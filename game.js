@@ -6,14 +6,14 @@ let levelPlan = `
 ................o..##..##..##..o...............
 ...............................................
 ................#..............#...............
-...............................................
+...@...........................................
 ...#..o.o..o.#...................#...o..o..#...
 ...##.......##...................##.......##...
 ....#########.....................#########....
 ...............................................
 ...............................................
 
-`
+`;
 
 /*
 <<<<<<<<<<<<<<<<<<--------->>>>>>>>>>>>>>>>>>>
@@ -67,7 +67,7 @@ class Lava {
 		this.reset = reset;
 	}
 
-	get type() {return "lava"}
+	get type() {return "lava"};
 
 	static create(pos,tile){
 		if(tile == "="){
@@ -116,7 +116,7 @@ class State {
 	}
 
 	get player(){
-		return this.actors.find(a => a.type == "player")
+		return this.actors.find(a => a.type == "player");
 	}
 }
 
@@ -294,7 +294,7 @@ Coin.prototype.collide = function(state){
 };
 
 Lava.prototype.update = function(time, state) { 
-	let newPos = this.pos.(this.speed.times(time));
+	let newPos = this.pos.plus(this.speed.times(time));
 	if(!state.level.touches(newPos, this.size, "wall")) {
 		return new Lava(newPos, this.speed, this.reset);
 	} else if (this.reset) {
@@ -377,6 +377,7 @@ function runLevel(level, Display){
 	let ending = 1;
 	return new Promise(resolve => {
 		runAnimation(time=>{
+			alert("Here");
 			state = state.update(time, arrowKeys);
 			display.syncState(state);
 			if(state.status=="playing"){
@@ -399,3 +400,4 @@ async function runGame (plans, Display){
 	}
 	console.log("You've won the game congratulations...");
 }
+
