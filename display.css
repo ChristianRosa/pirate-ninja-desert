@@ -1,6 +1,6 @@
 /*Game*/
 .background{
-	background: rgb(52,166,251);
+	background: rgb(152,166,251);
 	table-layout: fixed;
 	border-spacing:0;
 }
@@ -8,7 +8,7 @@
 	padding: 0;
 }
 .lava{
-	background:rgb(255,100,100);
+	background:rgb(255,130,100);
 }
 .wall{
 	background:white;
@@ -17,8 +17,8 @@
 
 /*Actors*/
 .actor{position:absolute;}
-.coin{background:rgb(241,229,89);}
-.player{background:rgb(64,64,64));}
+.coin{background:rgb(200,229,89);}
+.player{background:rgb(100,100,100));}
 
 .lost .player {
 	background:rgb(160,64,64);
