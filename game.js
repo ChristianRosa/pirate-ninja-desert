@@ -122,8 +122,8 @@ const scale = 20;
 class CanvasDisplay {
   constructor(parent, level) {
     this.canvas = document.createElement("canvas");
-    this.canvas.width = Math.min(600, level.width * scale);
-    this.canvas.height = Math.min(450, level.height * scale);
+    this.canvas.width = Math.min(window.innerWidth, level.width * scale);
+    this.canvas.height = level.height * scale;
     parent.appendChild(this.canvas);
     this.cx = this.canvas.getContext("2d");
 
@@ -133,7 +133,7 @@ class CanvasDisplay {
       left: 0,
       top: 0,
       width: this.canvas.width / scale,
-      height: this.canvas.height / scale
+      height: this.canvas.height /scale
     };
   }
 
@@ -214,8 +214,8 @@ function flipHorizontally(context, around) {
   context.translate(-around, 0);
 }
 
-CanvasDisplay.prototype.drawPlayer = function(player, x, y,
-                                              width, height){
+CanvasDisplay.prototype.drawPlayer = function(player, x, y, width, height){
+
   width += playerXOverlap * 2;
   x -= playerXOverlap;
   if (player.speed.x != 0) {
@@ -234,9 +234,10 @@ CanvasDisplay.prototype.drawPlayer = function(player, x, y,
     flipHorizontally(this.cx, x + width / 2);
   }
   let tileX = tile * width;
+
   this.cx.drawImage(playerSprites, 
                     tileX, 0, width, height,
-                    x,     y, width, height);
+                    x    , y, width, height);
   this.cx.restore();
 };
 
@@ -251,8 +252,12 @@ CanvasDisplay.prototype.drawActors = function(actors) {
     } else {
       let tileX = (actor.type == "coin" ? 2 : 1) * scale;
       this.cx.drawImage(otherSprites,
-                        tileX, 0, width, height,
-                        x,     y, width, height);
+                    //  Cropping
+                    //  X origin, Y origin, X size (to clip), Y size
+                        tileX   , 0       , width           , height,
+                    //  Placement
+                    //  X origin, Y origin, X scale, Y scale 
+                        x       , y       , width  , height  );
     }
   }
 };
