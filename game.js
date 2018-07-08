@@ -208,6 +208,12 @@ let playerSprites = document.createElement("img");
 playerSprites.src = "player.png";
 const playerXOverlap = 4;
 
+function flipHorizontally(context, around) {
+  context.translate(around, 0);
+  context.scale(-1, 1);
+  context.translate(-around, 0);
+}
+
 CanvasDisplay.prototype.drawPlayer = function(player, x, y,
                                               width, height){
   width += playerXOverlap * 2;
@@ -228,8 +234,9 @@ CanvasDisplay.prototype.drawPlayer = function(player, x, y,
     flipHorizontally(this.cx, x + width / 2);
   }
   let tileX = tile * width;
-  this.cx.drawImage(playerSprites, tileX, 0, width, height,
-                                   x,     y, width, height);
+  this.cx.drawImage(playerSprites, 
+                    tileX, 0, width, height,
+                    x,     y, width, height);
   this.cx.restore();
 };
 
