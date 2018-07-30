@@ -1,5 +1,3 @@
-
-
 class Level {
   constructor(plan) {
     let rows = plan.trim().split("\n").map(l => [...l]);
@@ -124,9 +122,8 @@ const scale = 20;
 class CanvasDisplay {
   constructor(parent, level) {
     this.canvas = document.createElement("canvas");
-    this.canvas.width = Math.min(level.width * scale, 1600); 
-    this.canvas.height = Math.min(level.height * scale, 400);
-    this.canvas.style.height = this.canvas.height;
+    this.canvas.width = 600 //Math.min(level.width * scale, 1600); 
+    this.canvas.height = 400;
     parent.appendChild(this.canvas);
     this.cx = this.canvas.getContext("2d");
 
