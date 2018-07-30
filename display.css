@@ -1,6 +1,23 @@
-body {
+html, body {
     margin: 0;
     text-align: center;
-    /*background: rgb(52, 166, 251);*/
+    height:100vh;
+
 }
 
+.flexible{
+	height:50%;
+	width:100%;
+	min-height: 400px;
+}
+
+#topHalf{
+	position:relative;
+	background-color:black;
+}
+#topHalf > canvas{
+	position: absolute;
+ 	top: 50%;
+ 	left:50%;
+ 	transform: translate(-50%,-50%);
+}
